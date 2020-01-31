@@ -31,7 +31,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           ls -ltr
-          /kube-psp-advisor --srouceDir master/yamls --targetDir candidate/yamls
+          /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
           cd kube-psp-advisor
           make build
           cd ..
