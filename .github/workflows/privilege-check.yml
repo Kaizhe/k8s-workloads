@@ -8,7 +8,6 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-#    container: kaizheh/kube-psp-advisor:comparator
     steps:
       - uses: actions/checkout@v2
         with:
@@ -20,14 +19,13 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Alpine Probe & Echo
         uses: Kaizhe/alpine-echo@v1.0.0
+        id: privilege_check
         with:
           message: 'What''s up'
       - name: Run a multi-line script
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
         run: |
           env
-          echo "$STEPS_CONTEXT"
+          echo ${{ steps.privielge_check.actions_fruit }}
           ls -ltr
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
           cd kube-psp-advisor
