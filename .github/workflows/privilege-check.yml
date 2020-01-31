@@ -22,7 +22,7 @@ jobs:
       with:
         repository: sysdiglabs/kube-psp-advisor
         ref: kh_add_comparator
-        path: candidate
+        path: kube-psp-advisor
     - name: Setup Go
       uses: actions/setup-go@v1
       with:
@@ -31,7 +31,8 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+        pwd
+        ls -ltr
         ls -ltr kube-psp-advisor
         cd kube-psp-advisor
         make build
-        pwd
