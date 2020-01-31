@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         path: candidate
-        ref: test
+        ref: ${{ github.event.pull_request.head.sha }}
     - uses: actions/checkout@v2
       with:
         repository: sysdiglabs/kube-psp-advisor
