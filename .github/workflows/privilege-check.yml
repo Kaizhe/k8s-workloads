@@ -1,4 +1,4 @@
-name: CI
+name: Privileges Check
 
 on:
   pull_request:
@@ -17,12 +17,21 @@ jobs:
         path: master
     - uses: actions/checkout@v2
       with:
-        path: new
-    - name: Run a one-line script
-      run: echo Hello, world!
+        path: candidate
+    - uses: actions/checkout@v2
+      with:
+        repository: sysdiglabs/kube-psp-advisor
+        ref: kh_add_comparator
+        path: candidate
+    - name: Setup Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-        ls -ltr
+        ls -ltr kube-psp-advisor
+        cd kube-psp-advisor
+        make build
         pwd
