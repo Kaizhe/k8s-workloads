@@ -23,6 +23,8 @@ jobs:
         with:
           message: 'What''s up'
       - name: Run a multi-line script
+        env:
+          ECHO_MSG: ${{ .Alpine Probe & Echo.action_fruit}} 
         run: |
           env
           ls -ltr
