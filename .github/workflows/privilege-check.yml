@@ -27,6 +27,7 @@ jobs:
           ECHO_MSG: ${{ .outputs.action_fruit }}
         run: |
           echo "$ECHO_MSG"
+          env
           ls -ltr
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
           cd kube-psp-advisor
