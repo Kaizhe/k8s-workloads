@@ -22,17 +22,11 @@ jobs:
         uses: Kaizhe/alpine-echo@v1.0.0
         with:
           message: 'What''s up'
-#      - uses: actions/checkout@v2
-#        with:
-#          repository: sysdiglabs/kube-psp-advisor
-#          ref: kh_add_comparator
-#          path: kube-psp-advisor
-#      - name: Setup Go
-#        uses: actions/setup-go@v1
-#        with:
-#          go-version: 1.13
       - name: Run a multi-line script
+        env:
+          ECHO_MSG: ${{ .outputs.action_fruit }}
         run: |
+          echo "{}"
           ls -ltr
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
           cd kube-psp-advisor
