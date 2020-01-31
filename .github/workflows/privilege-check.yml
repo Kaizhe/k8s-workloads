@@ -19,11 +19,11 @@ jobs:
         with:
           path: candidate
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/checkout@v2
-        with:
-          repository: sysdiglabs/kube-psp-advisor
-          ref: kh_add_comparator
-          path: kube-psp-advisor
+#      - uses: actions/checkout@v2
+#        with:
+#          repository: sysdiglabs/kube-psp-advisor
+#          ref: kh_add_comparator
+#          path: kube-psp-advisor
       - name: Setup Go
         uses: actions/setup-go@v1
         with:
@@ -31,6 +31,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           ls -ltr
+          kube-psp-advisor
           cd kube-psp-advisor
           make build
           cd ..
