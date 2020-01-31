@@ -25,7 +25,9 @@ jobs:
       - name: Run a multi-line script
         run: |
           env
+          echo "###"
           echo ${{ steps.privilege_check.outputs.action_fruit }}
+          echo "###"
           ls -ltr
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
           cd kube-psp-advisor
