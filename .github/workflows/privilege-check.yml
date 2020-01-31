@@ -25,7 +25,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           env
-          echo ${{ toJSON(steps.privielge_check.outputs) }}
+          echo ${{ toJSON(steps.privilege_check.outputs) }}
           ls -ltr
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
           cd kube-psp-advisor
