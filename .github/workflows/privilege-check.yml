@@ -18,7 +18,7 @@ jobs:
         with:
           path: candidate
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: docker.io://kaizheh/alpine
+      - uses: docker://kaizheh/alpine
         with:
           input: ls -ltr
 #      - uses: actions/checkout@v2
