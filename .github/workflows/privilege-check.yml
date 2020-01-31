@@ -37,5 +37,7 @@ jobs:
         cd kube-psp-advisor
 
         make build
-        export PATH=$PATH:./kube-psp-advisor
+        ls -ltr
+        cd ..
+        export PATH="$PATH:/kube-psp-advisor"
         kube-psp-advisor compare --sourceDir master/ --targetDir candidate
