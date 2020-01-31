@@ -18,6 +18,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         path: candidate
+        ref: test
     - uses: actions/checkout@v2
       with:
         repository: sysdiglabs/kube-psp-advisor
@@ -29,17 +30,7 @@ jobs:
         go-version: 1.13
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        pwd
-        ls -ltr
-        ls -ltr kube-psp-advisor
         cd kube-psp-advisor
-
         make build
-        ls -ltr
-        cd ..
-        pwd
-        ls
         export PATH="$PATH:$(pwd)/kube-psp-advisor"    
-        kube-psp-advisor compare --sourceDir master/ --targetDir candidate
+        kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
