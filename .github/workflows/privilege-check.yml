@@ -18,6 +18,9 @@ jobs:
         with:
           path: candidate
           ref: ${{ github.event.pull_request.head.sha }}
+      - uses: docker.io/kaizheh/alpine
+        with:
+          input: ls -ltr
 #      - uses: actions/checkout@v2
 #        with:
 #          repository: sysdiglabs/kube-psp-advisor
