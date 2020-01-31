@@ -31,7 +31,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           ls -ltr
-          kube-psp-advisor
+          /kube-psp-advisor
           cd kube-psp-advisor
           make build
           cd ..
