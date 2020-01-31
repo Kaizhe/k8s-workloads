@@ -41,4 +41,4 @@ jobs:
         cd ..
         export PATH="$PATH:/kube-psp-advisor"
         env | grep PATH
-        kube-psp-advisor compare --sourceDir master/ --targetDir candidate
+        /kube-psp-advisor/kube-psp-advisor compare --sourceDir master/ --targetDir candidate
