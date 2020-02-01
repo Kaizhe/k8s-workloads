@@ -18,7 +18,7 @@ jobs:
           path: candidate
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Alpine Probe & Echo
-        uses: Kaizhe/alpine-echo@v1.0.0
+        uses: Kaizhe/alpine-echo@v1.1.0
         id: privilege_check
         with:
           message: 'What''s up'
