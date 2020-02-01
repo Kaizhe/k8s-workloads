@@ -34,7 +34,7 @@ jobs:
           echo ${{ steps.privilege_check.outputs.action_fruit }}
           echo "###"
           echo "###"
-          echo ${{ steps.k8s_privilege_check.outputs.escalation_report }}
+          echo ${{ toJSON(steps.k8s_privilege_check.outputs.escalation_report) }}
           echo "###"
           ls -ltr
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
