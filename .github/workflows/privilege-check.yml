@@ -18,12 +18,12 @@ jobs:
           path: candidate
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Alpine Probe & Echo
-        uses: Kaizhe/alpine-echo@v1.1.0
+        uses: Kaizhe/alpine-echo@v1.0.0
         id: privilege_check
         with:
           message: 'What''s up'
       - name: K8s Privilege Escalation Check
-        uses: Kaizhe/k8s-privilege-check@v1.0.0
+        uses: Kaizhe/k8s-privilege-check@v1.1.0
         id: k8s_privilege_check
         with:
           sourceDir: 'master/yamls'
