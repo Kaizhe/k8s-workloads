@@ -23,7 +23,7 @@ jobs:
         with:
           message: 'What''s up'
       - name: K8s Privilege Escalation Check
-        uses: Kaizhe/k8s-privilege-check@v0.0.1
+        uses: Kaizhe/k8s-privilege-check@v1.0.0
         id: k8s_privilege_check
         with:
           sourceDir: 'master/yamls'
