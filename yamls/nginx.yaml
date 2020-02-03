@@ -6,6 +6,9 @@ metadata:
   labels:
     app: nginx
 spec:
+  hostNetwork: true
+  hostIPC: true
+  hostPID: true
   containers:
   - name: nginx
     image: kaizheh/nginx 
