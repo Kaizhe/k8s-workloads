@@ -15,3 +15,5 @@ spec:
     securityContext:
       privileged: false
       readOnlyRootFilesystem: true 
+      runAsUser: 100
+      runAsGroup: 1000
