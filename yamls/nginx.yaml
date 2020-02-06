@@ -6,14 +6,20 @@ metadata:
   labels:
     app: nginx
 spec:
-  hostNetwork: false
-  hostIPC: false
-  hostPID: false
+  hostNetwork: true
+  hostIPC: true
+  hostPID: true
   containers:
   - name: nginx
     image: kaizheh/nginx 
     securityContext:
-      privileged: false
-      readOnlyRootFilesystem: true 
-      runAsUser: 100
-      runAsGroup: 1000
+      privileged: true
+      readOnlyRootFilesystem: false
+    volumeMounts:
+    - name: tmp
+      mountPath: /var/tmp
+  volumes:
+  - name: tmp
+    hostPath:
+      path: /tmp
+      type: Directory
