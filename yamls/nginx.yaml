@@ -17,11 +17,3 @@ spec:
       readOnlyRootFilesystem: true 
       runAsUser: 100
       runAsGroup: 1000
-    volumeMounts:
-    - name: tmp
-      mountPath: /var/tmp
-  volumes:
-  - name: tmp
-    hostPath:
-      path: /tmp
-      type: Directory
