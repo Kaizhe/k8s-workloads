@@ -17,13 +17,8 @@ jobs:
         with:
           path: candidate
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Alpine Probe & Echo
-        uses: Kaizhe/alpine-echo@v1.0.0
-        id: privilege_check
-        with:
-          message: 'What''s up'
-      - name: K8s Privilege Escalation Check
-        uses: Kaizhe/k8s-privilege-check@v1.2.0
+      - name: Kubernetes Security Lint
+        uses: sysdiglabs/k8s-security-lint@v1.0.0
         id: k8s_privilege_check
         with:
           sourceDir: 'master/yamls'
@@ -31,14 +26,8 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo "###"
-          echo ${{ steps.privilege_check.outputs.action_fruit }}
-          echo "###"
-          echo "###"
           echo ${{ toJSON(steps.k8s_privilege_check.outputs.escalation_report) }} | jq .
           echo "###"
-          ls -ltr
+
+          #purpose stop here.
           /kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
-          cd kube-psp-advisor
-          cat master/yamls/nginx.yaml
-          cat candidate/yamls/nginx.yaml
-          kube-psp-advisor compare --sourceDir master/yamls --targetDir candidate/yamls
