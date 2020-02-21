@@ -26,12 +26,16 @@ jobs:
       - name: Post Check
         env:
           SYSDIG_MONITOR_TOKEN: ${{ secrets.SYSDIG_MONITOR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_OWNER: ${{ github.event.pull_request.head.user.login }}
         run: |
           echo "###"
+          echo "{\"pr_name\": \"${PR_TITLE}\", \"pr_sha\": \"${PR_SHA}\", \"pr_owner\": \"${PR_OWNER}\"}" > /tmp/report.json
           echo ${{ toJSON(steps.k8s_privilege_check.outputs.escalation_report) }} | jq .
           
           # send result to Sysdig monitor
-          curl -X POST -s https://app.sysdigcloud.com/api/events -H 'Content-Type: application/json; charset=UTF-8' -H 'Authorization: Bearer '"${SYSDIG_MONITOR_TOKEN}"'' -d '{"event":{"name":"Jenkins - start wordpress deploy","description":"deploy","severity":"6","tags":{"build":"89"}}}'
+          curl -X POST -s https://app.sysdigcloud.com/api/events -H 'Content-Type: application/json; charset=UTF-8' -H 'Authorization: Bearer '"${SYSDIG_MONITOR_TOKEN}"'' -d @/tmp/report.json
           echo "###"
 
           #purpose stop here.
