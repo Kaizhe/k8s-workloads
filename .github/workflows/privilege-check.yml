@@ -23,10 +23,15 @@ jobs:
         with:
           sourceDir: 'master/yamls'
           targetDir: 'candidate/yamls'
-      - name: Run a multi-line script
+      - name: Post Check
+        env:
+          SYSDIG_MONITOR_TOKEN: ${{ secrets.SYSDIG_MONITOR_TOKEN }}
         run: |
           echo "###"
           echo ${{ toJSON(steps.k8s_privilege_check.outputs.escalation_report) }} | jq .
+          
+          # send result to Sysdig monitor
+          curl -X POST -s https://app.sysdigcloud.com -H 'Content-Type: application/json; charset=UTF-8' -H 'Authorization: Bearer '"${SYSDIG_MONITOR_TOKEN}"'' -d '{"event":{"name":"Jenkins - start wordpress deploy","description":"deploy","severity":"6","tags":{"build":"89"}}}'
           echo "###"
 
           #purpose stop here.
