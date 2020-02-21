@@ -36,7 +36,7 @@ jobs:
           reportString='${{ toJSON(steps.k8s_privilege_check.outputs.escalation_report) }}'
           
           # send result to Sysdig monitor
-          curl -X POST -s https://app.sysdigcloud.com/api/events -H 'Content-Type: application/json; charset=UTF-8' -H 'Authorization: Bearer '"${SYSDIG_MONITOR_TOKEN}"'' -d '{"event":{"name":"K8s Security Lint Report - PR: '"${PR_TITLE}"' ","description":"${reportString}","severity":"6"}}' --compressed
+          curl -X POST -s https://app.sysdigcloud.com/api/events -H 'Content-Type: application/json; charset=UTF-8' -H 'Authorization: Bearer '"${SYSDIG_MONITOR_TOKEN}"'' -d '{"event":{"name":"K8s Security Lint Report - PR: '"${PR_TITLE}"' ","description":"\"'"${reportString}"'\"","severity":"6"}}' --compressed
           echo "###"
 
           #purpose stop here.
